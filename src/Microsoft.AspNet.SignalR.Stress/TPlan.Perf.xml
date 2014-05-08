@@ -90,7 +90,7 @@
       Microsoft.AspNet.SignalR.Stress.exe /Run:SimpleEchoHub /Transport:LongPolling /Senders:5 /Connections:5
     </command>
     <command name="SimpleEchoHub-ServerSentEvents" wait="Exit">
-      Microsoft.AspNet.SignalR.Stress.exe /Run:SimpleEchoHub /Transport:ServerSentEvents /Senders:5 /Connections:5
+      Microsoft.AspNet.SignalR.Stress.exe /Run:SimpleEchoHub /Host:HttpListener /Transport:ServerSentEvents /Senders:5 /Connections:5
     </command>
     <command name="MessageBus" wait="Exit">
       Microsoft.AspNet.SignalR.Stress.exe /Run:MessageBus /Senders:5

@@ -32,20 +32,12 @@ namespace Microsoft.AspNet.SignalR.Stress.Performance
             _callbacks = new TaskCompletionSource<bool>[Connections];
         }
 
-        public override void Initialize()
-        {
-            for (int i = 0; i < Connections; i++)
-            {
-                _connections[i] = new HubConnection(RunData.Url);
-            }
-
-            base.Initialize();
-        }
-
         protected override IDisposable CreateReceiver(int connectionIndex)
         {
             // set up the client and start it
-            HubConnection connection = _connections[connectionIndex];
+            HubConnection connection = new HubConnection(Host.Url);
+            _connections[connectionIndex] = connection;
+
             IHubProxy proxy = connection.CreateHubProxy("SimpleEchoHub");
 
             proxy.On<long>("echo", startTicks =>
